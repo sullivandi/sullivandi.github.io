@@ -135,8 +135,8 @@
             .then((userCredential) => {
                 const user = userCredential.user;
                 console.log("Signed in anonymously with UID:", user.uid);
-                // Set up the Firestore collection reference for this user
-                tasksCollection = collection(db, "users", user.uid, "tasks");
+                // **FIX**: Use a single, shared collection for all users.
+                tasksCollection = collection(db, "sharedTasks");
                 // Start listening for real-time updates
                 listenForTasks();
             })
@@ -456,4 +456,3 @@
     </script>
 </body>
 </html>
-
